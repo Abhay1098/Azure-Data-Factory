@@ -1,0 +1,9 @@
+{
+	"name": "abdatafactory123",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "8cf969e5-c7f7-44e6-90b6-2463a87ce5d6",
+		"tenantId": "4cdc7e6d-fa1d-4371-a366-bcb24e604c94"
+	}
+}
