@@ -1,5 +1,5 @@
 {
-	"name": "pipeline2",
+	"name": "Data Flow Pipeline_SQL table to blob storage",
 	"properties": {
 		"activities": [
 			{
