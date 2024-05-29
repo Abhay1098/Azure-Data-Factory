@@ -10,6 +10,9 @@
 		},
 		"AzureBlobStorage2_connectionString": {
 			"value": ""
+		},
+		"AzureBlobStorage_Delete_Activity_connectionString": {
+			"value": ""
 		}
 	}
 }
