@@ -13,6 +13,21 @@
 		},
 		"AzureBlobStorage_Delete_Activity_connectionString": {
 			"value": ""
+		},
+		"AzureBlobStorage_copy_Activity_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_password": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "abserver123.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "abdatabase123"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "abhay"
 		}
 	}
 }

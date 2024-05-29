@@ -18,6 +18,26 @@
 		"AzureBlobStorage_Delete_Activity_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage_Delete_Activity'"
+		},
+		"AzureBlobStorage_copy_Activity_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage_copy_Activity'"
+		},
+		"AzureSqlDatabase1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabase1'"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "abserver123.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "abdatabase123"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "abhay"
 		}
 	},
 	"variables": {
@@ -62,6 +82,115 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage_copy_Activity')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage_copy_Activity_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('AzureSqlDatabase1_properties_typeProperties_server')]",
+					"database": "[parameters('AzureSqlDatabase1_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"hostNameInCertificate": "",
+					"authenticationType": "SQL",
+					"userName": "[parameters('AzureSqlDatabase1_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('AzureSqlDatabase1_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "EMPLOYEE_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "FIRST_NAME",
+						"type": "varchar"
+					},
+					{
+						"name": "LAST_NAME",
+						"type": "varchar"
+					},
+					{
+						"name": "EMAIL",
+						"type": "varchar"
+					},
+					{
+						"name": "PHONE_NUMBER",
+						"type": "varchar"
+					},
+					{
+						"name": "HIRE_DATE",
+						"type": "date"
+					},
+					{
+						"name": "JOB_ID",
+						"type": "varchar"
+					},
+					{
+						"name": "SALARY",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 2
+					},
+					{
+						"name": "COMMISSION_PCT",
+						"type": "decimal",
+						"precision": 5,
+						"scale": 2
+					},
+					{
+						"name": "MANAGER_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DEPARTMENT_ID",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "employees"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Binary1')]",
@@ -160,6 +289,79 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage_copy_Activity",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "employees.csv",
+						"container": "input"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "EMPLOYEE_ID",
+						"type": "String"
+					},
+					{
+						"name": "FIRST_NAME",
+						"type": "String"
+					},
+					{
+						"name": "LAST_NAME",
+						"type": "String"
+					},
+					{
+						"name": "EMAIL",
+						"type": "String"
+					},
+					{
+						"name": "PHONE_NUMBER",
+						"type": "String"
+					},
+					{
+						"name": "HIRE_DATE",
+						"type": "String"
+					},
+					{
+						"name": "JOB_ID",
+						"type": "String"
+					},
+					{
+						"name": "SALARY",
+						"type": "String"
+					},
+					{
+						"name": "COMMISSION_PCT",
+						"type": "String"
+					},
+					{
+						"name": "MANAGER_ID",
+						"type": "String"
+					},
+					{
+						"name": "DEPARTMENT_ID",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_copy_Activity')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Json1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -180,6 +382,77 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Copy data from Blob to SQL Table Pipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy_data_blob_to_SQL_table",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DelimitedText2",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "AzureSqlTable1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DelimitedText2')]",
+				"[concat(variables('factoryId'), '/datasets/AzureSqlTable1')]"
 			]
 		},
 		{
