@@ -20,6 +20,9 @@
 		"AzureBlobStorage_copy_Activity_connectionString": {
 			"value": ""
 		},
+		"AzureBlobStorage_copy_dept_table_connectionString": {
+			"value": ""
+		},
 		"AzureSqlDatabase1_password": {
 			"value": ""
 		},
@@ -33,6 +36,9 @@
 			"value": ""
 		},
 		"AzureSqlDatabase5_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase6_password": {
 			"value": ""
 		},
 		"AzureSqlDatabase1_properties_typeProperties_server": {
@@ -70,6 +76,15 @@
 		},
 		"AzureSqlDatabase4_properties_typeProperties_userName": {
 			"value": "abhay"
+		},
+		"AzureSqlDatabase6_properties_typeProperties_server": {
+			"value": "abserver123.database.windows.net"
+		},
+		"AzureSqlDatabase6_properties_typeProperties_database": {
+			"value": "abdatabase123"
+		},
+		"AzureSqlDatabase6_properties_typeProperties_userName": {
+			"value": "Abhay"
 		}
 	}
 }

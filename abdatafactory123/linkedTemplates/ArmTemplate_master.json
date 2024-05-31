@@ -27,6 +27,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage_copy_Activity'"
 		},
+		"AzureBlobStorage_copy_dept_table_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage_copy_dept_table'"
+		},
 		"AzureSqlDatabase1_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AzureSqlDatabase1'"
@@ -46,6 +50,10 @@
 		"AzureSqlDatabase5_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase5'"
+		},
+		"AzureSqlDatabase6_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabase6'"
 		},
 		"AzureSqlDatabase1_properties_typeProperties_server": {
 			"type": "string",
@@ -95,6 +103,18 @@
 			"type": "string",
 			"defaultValue": "abhay"
 		},
+		"AzureSqlDatabase6_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "abserver123.database.windows.net"
+		},
+		"AzureSqlDatabase6_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "abdatabase123"
+		},
+		"AzureSqlDatabase6_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Abhay"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -137,6 +157,9 @@
 					"AzureBlobStorage_copy_Activity_connectionString": {
 						"value": "[parameters('AzureBlobStorage_copy_Activity_connectionString')]"
 					},
+					"AzureBlobStorage_copy_dept_table_connectionString": {
+						"value": "[parameters('AzureBlobStorage_copy_dept_table_connectionString')]"
+					},
 					"AzureSqlDatabase1_password": {
 						"value": "[parameters('AzureSqlDatabase1_password')]"
 					},
@@ -151,6 +174,9 @@
 					},
 					"AzureSqlDatabase5_connectionString": {
 						"value": "[parameters('AzureSqlDatabase5_connectionString')]"
+					},
+					"AzureSqlDatabase6_password": {
+						"value": "[parameters('AzureSqlDatabase6_password')]"
 					},
 					"AzureSqlDatabase1_properties_typeProperties_server": {
 						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_server')]"
@@ -187,6 +213,15 @@
 					},
 					"AzureSqlDatabase4_properties_typeProperties_userName": {
 						"value": "[parameters('AzureSqlDatabase4_properties_typeProperties_userName')]"
+					},
+					"AzureSqlDatabase6_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlDatabase6_properties_typeProperties_server')]"
+					},
+					"AzureSqlDatabase6_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlDatabase6_properties_typeProperties_database')]"
+					},
+					"AzureSqlDatabase6_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSqlDatabase6_properties_typeProperties_userName')]"
 					}
 				}
 			},
