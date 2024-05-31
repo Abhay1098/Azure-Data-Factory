@@ -1,0 +1,55 @@
+{
+	"name": "Join_Transformation_Json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "output"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"EMPLOYEE_ID": {
+					"type": "string"
+				},
+				"FIRST_NAME": {
+					"type": "string"
+				},
+				"LAST_NAME": {
+					"type": "string"
+				},
+				"EMAIL": {
+					"type": "string"
+				},
+				"PHONE_NUMBER": {
+					"type": "string"
+				},
+				"HIRE_DATE": {
+					"type": "string"
+				},
+				"JOB_ID": {
+					"type": "string"
+				},
+				"SALARY": {
+					"type": "string"
+				},
+				"COMMISSION_PCT": {
+					"type": "string"
+				},
+				"MANAGER_ID": {
+					"type": "string"
+				},
+				"DEPARTMENT_ID": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
