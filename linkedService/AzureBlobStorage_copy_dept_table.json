@@ -1,0 +1,13 @@
+{
+	"name": "AzureBlobStorage_copy_dept_table",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "This linked service will be use to set up the connection with the azure blob storage where our source table is kept(i.e. department table)",
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": "DefaultEndpointsProtocol=https;AccountName=abstorageaccount1998;EndpointSuffix=core.windows.net;",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQENGNjU3QTg1LURGOUItNDRDMy1CQkEyLTUwQjMzQzY5NkU5OV82YmRkNDM5My04NjhkLTQyMDktYWI3YS03NWY4YTFkY2NkZTMiDQp9"
+		}
+	}
+}
